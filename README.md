@@ -34,3 +34,12 @@ else:
 
 # Close the connection
 conn.close()
+
+SELECT o.orderid, o.order_date, p.description, s.name AS seller_name, od.price, od.quantity, od.status
+FROM your_order_table AS o
+JOIN your_order_details_table AS od ON o.orderid = od.orderid
+JOIN your_product_table AS p ON od.productid = p.productid
+JOIN your_seller_table AS s ON p.sellerid = s.sellerid
+WHERE o.shopper_id = 10010
+ORDER BY o.order_date DESC;
+
